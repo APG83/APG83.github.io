@@ -18,7 +18,7 @@
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
+            line-height: 1.65;
             background-color: #f4f6f8;
             color: #1f2933;
         }
@@ -53,7 +53,8 @@
             font-weight: bold;
         }
 
-        nav a:hover {
+        nav a:hover,
+        nav a:focus {
             text-decoration: underline;
         }
 
@@ -76,9 +77,20 @@
             color: #1f3a5f;
         }
 
-        .video-link {
+        section h3 {
+            margin-top: 28px;
+            color: #294f78;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .button-link {
             display: inline-block;
-            margin-top: 10px;
             padding: 11px 18px;
             background-color: #1f3a5f;
             color: white;
@@ -87,8 +99,15 @@
             border-radius: 5px;
         }
 
-        .video-link:hover {
+        .button-link:hover,
+        .button-link:focus {
             background-color: #315b8a;
+        }
+
+        .narrative {
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid #d9dee3;
         }
 
         .coming-soon {
@@ -128,6 +147,14 @@
 
             section {
                 padding: 22px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button-link {
+                text-align: center;
             }
         }
     </style>
@@ -183,30 +210,218 @@
                 The completed code review video is available through the link below.
             </p>
 
-            <a
-                class="video-link"
-                href="https://youtu.be/L9VLcRYfQD0"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                View the CS 499 Code Review Video
-            </a>
+            <div class="button-group">
+                <a
+                    class="button-link"
+                    href="https://youtu.be/L9VLcRYfQD0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View the CS 499 Code Review Video
+                </a>
+            </div>
         </section>
 
         <section id="software-design">
             <h2>Software Design and Engineering</h2>
 
             <p>
-                The software design and engineering enhancement improves the
-                organization, readability, maintainability, and testability of the
-                Contact Service application. The enhanced design separates the model,
-                service, validation, and repository responsibilities while adding
-                clearer documentation and application logging.
+                This enhancement focuses on improving the organization,
+                maintainability, testability, and reliability of the Contact Service
+                application. The original project was refactored into separate model,
+                validation, repository, and service components. The enhanced version
+                also includes dependency injection, logging, stronger validation,
+                clearer documentation, and expanded JUnit testing.
             </p>
 
-            <p class="coming-soon">
-                Artifact and narrative coming soon.
-            </p>
+            <div class="button-group">
+                <a
+                    class="button-link"
+                    href="contactService.zip"
+                    download
+                >
+                    Download Original Artifact
+                </a>
+
+                <a
+                    class="button-link"
+                    href="ContactServiceMilestone3.zip"
+                    download
+                >
+                    Download Enhanced Artifact
+                </a>
+
+                <a
+                    class="button-link"
+                    href="CS499-Milestone2EnhancementNarrative.docx"
+                    download
+                >
+                    Download Enhancement Narrative
+                </a>
+            </div>
+
+            <div class="narrative">
+                <h3>Artifact Description</h3>
+
+                <p>
+                    The artifact I selected is the Contact Service application that
+                    I originally created in CS 320: Software Testing, Automation, and
+                    Quality Assurance. The project was created in Java and uses
+                    JUnit 5 tests to verify that contact records meet the required
+                    specifications. The original application allowed users to add,
+                    update, and delete contacts while validating the contact ID,
+                    first name, last name, phone number, and address.
+                </p>
+
+                <p>
+                    I selected this artifact because it provided a good foundation
+                    for demonstrating software design and engineering skills. The
+                    original project worked correctly, but its structure was simple
+                    and placed several responsibilities within only a few classes.
+                    This made it a strong candidate for refactoring into a more
+                    organized and maintainable application.
+                </p>
+
+                <h3>Justification and Improvements</h3>
+
+                <p>
+                    I included this artifact in my ePortfolio because it demonstrates
+                    my ability to improve an existing software application without
+                    removing its original functionality. The enhanced version shows
+                    skills in object-oriented design, code organization, validation,
+                    testing, logging, and separation of responsibilities.
+                </p>
+
+                <p>
+                    The original Contact class stored contact data and also contained
+                    all of the validation rules. The ContactService class handled
+                    business operations while directly managing the in-memory
+                    collection used to store contacts. Although this design worked
+                    for a small project, it would become harder to maintain as
+                    additional features were added.
+                </p>
+
+                <p>
+                    I improved the project by organizing the application into model,
+                    validation, repository, and service packages. The Contact class
+                    now focuses on representing a contact record. The
+                    ContactValidator class centralizes the validation rules so they
+                    can be reused consistently throughout the application. The
+                    ContactRepository class manages the in-memory storage of contact
+                    records, while the ContactService class handles business
+                    operations such as adding, updating, deleting, and retrieving
+                    contacts.
+                </p>
+
+                <p>
+                    I also added constructor-based dependency injection to the
+                    service layer. This allows the ContactService to receive a
+                    repository instead of creating all dependencies internally.
+                    This improves testability and makes it easier to replace the
+                    in-memory repository with a different storage method in the
+                    future.
+                </p>
+
+                <p>
+                    Logging was added to record successful operations, duplicate
+                    contact attempts, missing contact operations, and invalid null
+                    inputs. The logging avoids displaying sensitive contact
+                    information such as names, phone numbers, and addresses. I also
+                    strengthened phone number validation so that a phone number must
+                    contain exactly 10 numerical digits instead of only checking its
+                    length.
+                </p>
+
+                <p>
+                    The JUnit test suite was expanded from 7 tests to 38 tests.
+                    Additional tests now cover duplicate contacts, null inputs,
+                    partial updates, missing contacts, repository operations,
+                    dependency injection, and each validation rule. All 38 tests
+                    pass with no errors or failures.
+                </p>
+
+                <h3>Course Outcome Coverage</h3>
+
+                <p>
+                    This enhancement made substantial progress toward the course
+                    outcome involving the use of well-founded techniques, skills,
+                    and tools to implement computing solutions that deliver value.
+                    The layered package structure, centralized validation,
+                    repository pattern, dependency injection, logging, and expanded
+                    testing demonstrate software engineering practices that improve
+                    maintainability and reliability.
+                </p>
+
+                <p>
+                    The enhancement also supports the communication outcome. The code
+                    includes clearer class names, method names, package organization,
+                    documentation, and test descriptions. These improvements make
+                    the project easier for another developer to understand and
+                    maintain.
+                </p>
+
+                <p>
+                    The project also demonstrates progress toward developing a
+                    security mindset. Input validation prevents invalid contact data
+                    from being stored, and the logging avoids exposing unnecessary
+                    personal information. The service also rejects null values in
+                    important operations and provides controlled exception messages.
+                </p>
+
+                <p>
+                    My original outcome-coverage plan remains mostly unchanged. The
+                    software design and engineering outcome is the main focus of this
+                    enhancement. The algorithms and data structures outcome is
+                    addressed more directly in the next enhancement, and the
+                    database outcome is addressed when persistent storage is added.
+                </p>
+
+                <h3>Reflection</h3>
+
+                <p>
+                    Enhancing this artifact helped me understand the difference
+                    between code that works and code that is designed for long-term
+                    maintenance. The original project met its basic requirements,
+                    but it combined data storage, validation, and business operations
+                    too closely. Separating these responsibilities made the project
+                    easier to understand and created a clearer structure for future
+                    expansion.
+                </p>
+
+                <p>
+                    One challenge was moving classes from the default package into
+                    named packages. Java classes inside named packages cannot import
+                    classes from the default package, so the Contact model and
+                    ContactService had to be moved carefully. Eclipse refactoring
+                    tools helped update the necessary imports and references.
+                </p>
+
+                <p>
+                    Another challenge was preserving the original functionality while
+                    changing the internal design. I ran the JUnit tests after each
+                    major modification to make sure the project continued to work
+                    correctly. This showed me the importance of automated tests
+                    during refactoring. The tests provided immediate feedback and
+                    made it safer to reorganize the code.
+                </p>
+
+                <p>
+                    I also learned that code coverage percentages can be affected by
+                    the project structure. Because the test classes and application
+                    classes are stored in the same source folder, Eclipse includes
+                    the test code in the overall coverage calculation. Even though
+                    the percentage changed as new tests were added, the expanded
+                    suite still provided much more complete testing of the
+                    application behavior.
+                </p>
+
+                <p>
+                    Overall, this enhancement improved the professionalism,
+                    organization, testability, and maintainability of the Contact
+                    Service application. It also prepared the project for the later
+                    enhancements involving data structures and database persistence.
+                </p>
+            </div>
         </section>
 
         <section id="algorithms">
