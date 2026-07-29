@@ -3,7 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Adam Gomez | Computer Science ePortfolio</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f6f8;
+            color: #1f2933;
+        }
+
+        header {
+            background-color: #1f3a5f;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin: 8px 0 22px;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background-color: white;
+            padding: 28px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        section h2 {
+            margin-top: 0;
+            color: #1f3a5f;
+        }
+
+        .video-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 11px 18px;
+            background-color: #1f3a5f;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .video-link:hover {
+            background-color: #315b8a;
+        }
+
+        .coming-soon {
+            font-style: italic;
+            color: #5f6b76;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 22px;
+            text-align: center;
+            background-color: #1f3a5f;
+            color: white;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                padding: 30px 15px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            main {
+                padding: 0 12px;
+            }
+
+            section {
+                padding: 22px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -12,10 +139,10 @@
         <p>Computer Science ePortfolio</p>
 
         <nav>
-            <a href="#home">Home</a> |
-            <a href="#code-review">Code Review</a> |
-            <a href="#software-design">Software Design and Engineering</a> |
-            <a href="#algorithms">Algorithms and Data Structures</a> |
+            <a href="#home">Home</a>
+            <a href="#code-review">Code Review</a>
+            <a href="#software-design">Software Design and Engineering</a>
+            <a href="#algorithms">Algorithms and Data Structures</a>
             <a href="#databases">Databases</a>
         </nav>
     </header>
@@ -41,8 +168,6 @@
             </p>
         </section>
 
-        <hr>
-
         <section id="code-review">
             <h2>Code Review</h2>
 
@@ -58,12 +183,15 @@
                 The completed code review video is available through the link below.
             </p>
 
-            <p>
-                <a href="https://youtu.be/L9VLcRYfQD0" target="_blank">View the CS 499 Code Review Video </a>
-            </p>
+            <a
+                class="video-link"
+                href="https://youtu.be/L9VLcRYfQD0"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                View the CS 499 Code Review Video
+            </a>
         </section>
-
-        <hr>
 
         <section id="software-design">
             <h2>Software Design and Engineering</h2>
@@ -76,10 +204,10 @@
                 clearer documentation and application logging.
             </p>
 
-            <p>Artifact and narrative coming soon.</p>
+            <p class="coming-soon">
+                Artifact and narrative coming soon.
+            </p>
         </section>
-
-        <hr>
 
         <section id="algorithms">
             <h2>Algorithms and Data Structures</h2>
@@ -91,10 +219,10 @@
                 preserving efficient ID-based access.
             </p>
 
-            <p>Artifact and narrative coming soon.</p>
+            <p class="coming-soon">
+                Artifact and narrative coming soon.
+            </p>
         </section>
-
-        <hr>
 
         <section id="databases">
             <h2>Databases</h2>
@@ -107,11 +235,11 @@
                 read, update, and delete operations.
             </p>
 
-            <p>Artifact and narrative coming soon.</p>
+            <p class="coming-soon">
+                Artifact and narrative coming soon.
+            </p>
         </section>
     </main>
-
-    <hr>
 
     <footer>
         <p>&copy; 2026 Adam Gomez</p>
