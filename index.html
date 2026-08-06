@@ -461,6 +461,139 @@
                     Download Enhancement Narrative
                 </a>
             </div>
+
+            <div class="narrative">
+                <h3>Artifact Description</h3>
+
+                <p>
+                    The artifact selected for this enhancement is the Contact Service
+                    application originally created in CS 320: Software Testing,
+                    Automation, and Quality Assurance. The Java application allows
+                    users to add, update, delete, and retrieve contact records while
+                    validating the contact ID, first name, last name, phone number,
+                    and address.
+                </p>
+
+                <p>
+                    I continued using this artifact because its model, validation,
+                    repository, and service structure provided a strong foundation
+                    for demonstrating algorithms and data structures. The storage
+                    logic could be improved without rewriting the rest of the
+                    application.
+                </p>
+
+                <h3>Justification and Improvements</h3>
+
+                <p>
+                    I included this enhancement in my ePortfolio because it
+                    demonstrates my ability to select a data structure based on how
+                    an application accesses its information. Contacts are normally
+                    added, retrieved, updated, or deleted using a unique contact ID.
+                    For that reason, I used a HashMap with the contact ID as the key
+                    and the Contact object as the value.
+                </p>
+
+                <p>
+                    The HashMap provides average O(1) lookup, insertion, and
+                    deletion. A list-based approach would generally require an O(n)
+                    sequential search to locate a contact by ID. The HashMap also
+                    allows duplicate IDs to be detected efficiently by checking
+                    whether the requested key already exists.
+                </p>
+
+                <p>
+                    Because a HashMap does not maintain alphabetical order, I added
+                    a separate sorting algorithm for displaying contacts by name.
+                    The repository copies the stored contacts into an ArrayList and
+                    sorts them with a Comparator. Contacts are ordered first by last
+                    name and then by first name when two contacts have the same last
+                    name. Creating the list requires O(n) time, while sorting
+                    requires approximately O(n log n) time.
+                </p>
+
+                <p>
+                    This design preserves efficient ID-based operations while still
+                    providing ordered output when needed. The sorting feature is
+                    exposed through the ContactService so callers do not need to
+                    access the repository directly.
+                </p>
+
+                <p>
+                    The JUnit test suite was expanded from 38 tests to 45 tests. New
+                    tests verify sorting by last name, first-name tie-breaking,
+                    empty repository behavior, and confirmation that producing a
+                    sorted list does not alter the stored contacts. All 45 tests
+                    pass, and the Eclipse coverage report shows 94.4% overall
+                    instruction coverage.
+                </p>
+
+                <h3>Course Outcome Coverage</h3>
+
+                <p>
+                    This enhancement addresses the course outcome involving the
+                    design and evaluation of computing solutions using algorithmic
+                    principles and appropriate trade-offs. I evaluated how contacts
+                    are accessed, selected a HashMap for efficient ID-based
+                    operations, and added a separate sorting algorithm for
+                    alphabetical output.
+                </p>
+
+                <p>
+                    The enhancement also demonstrates the use of well-founded
+                    computing techniques and tools, including Java collections,
+                    generics, ArrayList, Comparator, method references, layered
+                    design, JUnit 5, and Eclipse code coverage. The narrative,
+                    documentation, method names, and test descriptions also support
+                    professional technical communication.
+                </p>
+
+                <p>
+                    The algorithms and data structures outcome is the main focus of
+                    this enhancement. The repository and service layers also support
+                    the software design and engineering outcome. This work provided
+                    the foundation for the later database enhancement, which added
+                    SQLite persistence while preserving the service behavior
+                    developed during the first two enhancements.
+                </p>
+
+                <h3>Reflection</h3>
+
+                <p>
+                    This enhancement helped me understand that choosing a data
+                    structure depends on the operations an application performs most
+                    often. A list may be appropriate for a small project, but
+                    searching by ID becomes less efficient as the number of contacts
+                    increases. The HashMap creates a direct relationship between the
+                    contact ID and the stored Contact object.
+                </p>
+
+                <p>
+                    The main trade-off was that the HashMap does not keep contacts
+                    in alphabetical order. Instead of replacing it with a structure
+                    that would make ID access less direct, I kept the HashMap and
+                    created a separately sorted view. This demonstrated how multiple
+                    data structures and algorithms can work together to meet
+                    different requirements.
+                </p>
+
+                <p>
+                    One challenge was ensuring that this milestone demonstrated
+                    additional algorithmic work because the repository already used
+                    a HashMap after the previous enhancement. Adding the
+                    Comparator-based sorted view, exposing it through the service
+                    layer, documenting time complexity, and expanding the tests made
+                    the algorithms and data structures enhancement more complete.
+                </p>
+
+                <p>
+                    Overall, this enhancement improved the efficiency, flexibility,
+                    and professionalism of the Contact Service application. It
+                    demonstrates my ability to evaluate access patterns, select an
+                    appropriate data structure, implement sorting logic, explain
+                    complexity trade-offs, and verify the results with automated
+                    testing.
+                </p>
+            </div>
         </section>
 
         <section id="databases">
