@@ -792,16 +792,214 @@
             <h2>Databases</h2>
 
             <p>
-                The database enhancement adds SQLite persistence to the Contact
-                Service application. Contact information is stored in a relational
+                This enhancement adds SQLite persistence to the Contact Service
+                application. Contact information is now stored in a relational
                 database and remains available after the application closes.
-                Parameterized SQL statements are used to support secure create,
-                read, update, and delete operations.
+                The enhancement also introduces JDBC integration, parameterized
+                SQL statements, CRUD operations, database initialization,
+                persistent storage, and database-focused testing.
             </p>
 
-            <p class="coming-soon">
-                Artifact and narrative coming soon.
-            </p>
+            <div class="button-group">
+                <a
+                    class="button-link"
+                    href="contactService.zip"
+                    download
+                >
+                    Download Original Artifact
+                </a>
+
+                <a
+                    class="button-link"
+                    href="contactService_database.zip"
+                    download
+                >
+                    Download Enhanced Artifact
+                </a>
+
+                <a
+                    class="button-link"
+                    href="CS499_Milestone4_Database_Enhancement_Narrative.docx"
+                    download
+                >
+                    Download Enhancement Narrative
+                </a>
+            </div>
+
+            <div class="narrative">
+                <h3>Artifact Description</h3>
+
+                <p>
+                    The artifact I selected for the database category is the Contact
+                    Service application that I originally created in CS 320. The
+                    project was developed in Java and was designed to manage contact
+                    records containing a contact ID, first name, last name, phone
+                    number, and address. The original version included validation
+                    rules and JUnit tests for adding, updating, retrieving, and
+                    deleting contacts. It was a useful demonstration of
+                    object-oriented programming and testing, but it stored all
+                    records only in memory. Because of that limitation, the data
+                    disappeared whenever the application stopped running.
+                </p>
+
+                <p>
+                    For this enhancement, I added SQLite database persistence and
+                    reorganized the storage design so the application can work with
+                    either an in-memory repository or a database repository. I
+                    created database connection and initialization classes, added a
+                    contacts table, and implemented create, read, update, and delete
+                    operations through an SQLite repository. I also added a
+                    ContactStorage interface so the service layer is not tied to one
+                    storage method. This allows the original HashMap-based repository
+                    and the new SQLite repository to support the same service
+                    operations.
+                </p>
+
+                <h3>Justification and Improvements</h3>
+
+                <p>
+                    I selected this artifact because it shows how a smaller classroom
+                    project can be developed into a more complete and practical
+                    application. The original Contact Service already demonstrated
+                    Java classes, validation, service logic, unit testing, and
+                    efficient in-memory lookup. The database enhancement added a new
+                    level of functionality by making the contact data persistent and
+                    by introducing relational database design, SQL, JDBC, and
+                    database-specific testing. This makes the artifact a stronger
+                    representation of my abilities because it shows both the original
+                    design and the way I improved it to solve a real limitation.
+                </p>
+
+                <p>
+                    Several components of the enhanced artifact demonstrate my
+                    software development skills. The ContactStorage interface
+                    separates the service layer from the details of data storage,
+                    while the ContactRepository and SQLiteContactRepository classes
+                    provide different implementations of the same operations. The
+                    SQLite repository uses prepared statements for all values
+                    supplied to SQL queries, and the database table uses the contact
+                    ID as a primary key. The project also uses try-with-resources so
+                    database connections, prepared statements, and result sets are
+                    closed automatically. These decisions improve maintainability,
+                    security, and reliability.
+                </p>
+
+                <p>
+                    The artifact was also improved through expanded testing and
+                    documentation. I added tests for database initialization, SQLite
+                    repository operations, database-backed service operations,
+                    duplicate IDs, missing records, sorted results, contact counts,
+                    and persistence across separate service instances. The completed
+                    project passed all 58 tests with no failures or errors and
+                    reached 93.8% instruction coverage. I also added a README that
+                    explains the project structure, database design, setup steps,
+                    security practices, testing results, and design trade-offs.
+                </p>
+
+                <h3>Course Outcome Coverage</h3>
+
+                <p>
+                    This enhancement met the main course outcomes I planned to
+                    address in Module One. It strongly supports the outcome involving
+                    the use of well-founded techniques, skills, and tools to implement
+                    computing solutions that provide value. The project uses Java,
+                    SQLite, JDBC, SQL, JUnit 5, Eclipse, and code coverage tools to
+                    turn a temporary in-memory application into one that can preserve
+                    and manage records between sessions.
+                </p>
+
+                <p>
+                    The enhancement also supports the outcome involving the design
+                    and evaluation of computing solutions while managing trade-offs.
+                    The HashMap repository provides average O(1) access by contact ID
+                    and remains useful for lightweight testing, but it does not
+                    preserve data. SQLite adds persistent and structured storage,
+                    although database access requires more processing, exception
+                    handling, and test setup. The shared ContactStorage interface
+                    allows both approaches to remain available without duplicating
+                    the service logic.
+                </p>
+
+                <p>
+                    The security outcome is demonstrated through input validation,
+                    prepared SQL statements, primary-key constraints, controlled
+                    access to database operations, and automatic cleanup of database
+                    resources. These practices reduce the risk of malformed data,
+                    duplicate records, SQL injection, and resource leaks.
+                </p>
+
+                <p>
+                    The communication outcome is supported by the enhancement
+                    narrative, Java documentation, README, test names, and organized
+                    project structure. The collaborative-environment outcome is also
+                    supported by organizing and documenting the application in a way
+                    that makes the design, functionality, and technical decisions
+                    easier for other developers and audiences to understand.
+                </p>
+
+                <h3>Reflection</h3>
+
+                <p>
+                    The most important lesson I learned was that adding a database
+                    involves much more than writing SQL statements. I had to decide
+                    how the database would fit into the existing architecture without
+                    breaking the original behavior. At first, the ContactService
+                    class depended directly on the in-memory ContactRepository.
+                    Creating the ContactStorage interface allowed the service to work
+                    with either repository through dependency injection. This made
+                    the design more flexible and helped me understand how interfaces
+                    can separate business logic from implementation details.
+                </p>
+
+                <p>
+                    Another challenge was making updates behave correctly with both
+                    storage types. In the in-memory repository, the service modifies
+                    a mutable Contact object that is already stored by reference.
+                    With SQLite, changing the Java object does not automatically
+                    change the database record. I had to add an explicit update
+                    operation and call it from the service after the selected fields
+                    were changed. This difference helped me understand why
+                    persistence layers require clearly defined operations and why
+                    behavior that works with an in-memory collection may not work the
+                    same way with a database.
+                </p>
+
+                <p>
+                    Testing the database also required more preparation than testing
+                    a HashMap. I added setup methods that initialize the contacts
+                    table and clear its records before each test so the tests remain
+                    independent and repeatable. I also created a test that saves a
+                    contact through one service instance and retrieves it through
+                    another. That test was especially useful because it demonstrated
+                    that the data was truly persistent rather than being stored only
+                    in an object that remained in memory.
+                </p>
+
+                <p>
+                    I also learned more about balancing security, clarity, and error
+                    handling. Prepared statements make the SQL safer and easier to
+                    maintain, while try-with-resources prevents open connections and
+                    statements from being left behind. I converted checked SQL
+                    exceptions inside the repository into consistent
+                    application-level exceptions so the service layer would not need
+                    database-specific exception code in every method. The Java 24
+                    native-access warning from the SQLite driver was another
+                    challenge, but testing confirmed that it was a runtime warning
+                    rather than a failure in the enhancement.
+                </p>
+
+                <p>
+                    Overall, the enhancement made the Contact Service a more complete
+                    professional artifact. It now demonstrates persistent data
+                    storage, relational database operations, layered architecture,
+                    secure query practices, automated testing, and documented design
+                    decisions. The process strengthened my understanding of how
+                    software design, databases, testing, and security work together.
+                    Presenting the original and enhanced versions together in this
+                    ePortfolio clearly demonstrates the progression of the artifact
+                    throughout the capstone.
+                </p>
+            </div>
         </section>
     </main>
 
